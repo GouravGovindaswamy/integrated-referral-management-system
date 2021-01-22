@@ -1,0 +1,95 @@
+<div>
+  <!-- End layout styles -->
+  <div class="container-scroller">
+    <div class="page-body-wrapper full-page-wrapper">
+      <div class="content-wrapper d-flex align-items-center auth">
+        <div class="row flex-grow" style="height: 100%;" *ngIf="showDiv" [@flyInOut]>
+          <div class="col-lg-4 mx-auto">
+            <div class="auth-form-light text-left p-5">
+              <div class="brand-logo">
+                <img style="width:40px; height:40px;" src="../../assets/images/logo.svg">
+              </div>
+              <h4 style="font-weight: bold; font-size: 20px;">Add Patient Record</h4>
+              <h6 class="font-weight-light" style="font-size:15px;">Enter details to proceed.</h6>
+              <form [formGroup]="patData" class="pt-3" (ngSubmit)="passRecord(patData.value)">
+
+                <mat-form-field appearance="fill" style="width: 100%;">
+                  <mat-label style="font-weight: bold;">Enter Patient</mat-label>
+                  <input id="patient" formControlName="patient" matInput>
+                </mat-form-field>
+
+
+                <mat-form-field appearance="fill" style="width: 100%;">
+                  <mat-label style="font-weight: bold;">Consulted by</mat-label>
+                  <mat-select id="branch" formControlName="consultantType">
+                    <mat-option value="general physician" (click)="passConsultantType()">General Physician</mat-option>
+                    <mat-option value="specialist" (click)="passConsultantType()">Specialist</mat-option>
+                    <mat-option value="nurse" (click)="passConsultantType()">Nurse</mat-option>
+                    <mat-option value="assistant" (click)="passConsultantType()">Assistant</mat-option>
+                    <mat-option value="admin" (click)="passConsultantType()">Admin</mat-option>
+                  </mat-select>
+                </mat-form-field>
+
+
+                <mat-form-field appearance="fill" style="width: 100%;">
+                  <mat-label style="font-weight: bold;">Consultant Name</mat-label>
+                  <mat-select id="attender" formControlName="consultantName">
+                    <mat-option *ngFor="let element of consultantArray" [value]="element">{{element}}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+
+                <mat-form-field appearance="fill" style="width: 100%;">
+                  <mat-label style="font-weight: bold;">Enter Description</mat-label>
+                  <textarea matInput id="description" formControlName="description"></textarea>
+                </mat-form-field>
+
+
+                <div fxLayout="row">
+                  <mat-form-field>
+                    <mat-label style="font-weight: bold; padding-left:15px">Consulted on</mat-label>
+                    <input matInput type="date" id="data" formControlName="date" style="padding-left:15px">
+                  </mat-form-field>
+
+                  <mat-form-field apperance="fill" style="margin-left: 20px; width: 215px;">
+                    <mat-label style="font-weight: bold; padding-left:15px;">at time</mat-label>
+                    <input matInput [ngxTimepicker]="pickerTime" id="time" formControlName="time">
+                    <ngx-material-timepicker #pickerTime></ngx-material-timepicker>
+                  </mat-form-field>
+
+                  <mat-form-field appearance="fill" style="width: 100%;">
+                    <mat-label style="font-weight: bold;">at branch</mat-label>
+                    <mat-select id="branch" formControlName="branch">
+                      <mat-option value="Chennai">Chennai</mat-option>
+                      <mat-option value="Coimbatore">Coimbatore</mat-option>
+                      <mat-option value="Bangalore">Bangalore</mat-option>
+                      <mat-option value="Hyderabad">Hyderabad</mat-option>
+                      <mat-option value="Kochi">Kochi</mat-option>
+                    </mat-select>
+                  </mat-form-field>
+
+
+                </div>
+                <div class="mt-3">
+                  <button
+                    
+                    class="btn btn-block btn-gradient-primary btn-lg font-weight-medium auth-form-btn"
+                    [disabled]="patData.value.patient === '' || patData.value.consultantType === '' || patData.value.consultantName === '' ||
+                    patData.value.description === '' || patData.value.date === '' || patData.value.time === '' || patData.value.branch === ''"
+                    type="submit">ADD</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- content-wrapper ends -->
+    </div>
+    <!-- page-body-wrapper ends -->
+  </div>
+</div>
+<!-- container-scroller -->
+<!-- plugins:js -->
+<!-- endinject -->
+<!-- Plugin js for this page -->
+<!-- End plugin js for this page -->
+<!-- inject:js -->

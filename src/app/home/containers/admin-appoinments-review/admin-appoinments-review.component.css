@@ -1,0 +1,12 @@
+.data-table{
+  width: 80%;
+  margin: 20px auto;
+}
+.example-radio-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.example-radio-button {
+  margin-top: 0px;
+}

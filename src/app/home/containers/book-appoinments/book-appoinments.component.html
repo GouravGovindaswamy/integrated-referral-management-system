@@ -1,0 +1,95 @@
+<div>
+  <!-- End layout styles -->
+  <div class="container-scroller">
+    <div class="page-body-wrapper full-page-wrapper">
+      <div class="content-wrapper d-flex align-items-center auth">
+        <div class="row flex-grow" style="height: 100%;" *ngIf="showDiv" [@flyInOut]>
+          <div class="col-lg-4 mx-auto">
+            <div class="auth-form-light text-left p-5">
+              <div class="brand-logo">
+                <img style="width:40px; height:40px;" src="../../assets/images/logo.svg">
+              </div>
+              <h4 style="font-weight: bold; font-size: 20px;">Book Referral Appoinments</h4>
+              <h6 class="font-weight-light" style="font-size:15px;">Enter details to proceed.</h6>
+              <form [formGroup]="appData" class="pt-3" (ngSubmit)="passAppoinment(appData.value)">
+
+                <mat-form-field appearance="fill" style="width: 100%;">
+                  <mat-label style="font-weight: bold;">Select Attender</mat-label>
+                  <mat-select id="attender" formControlName="attender">
+                    <mat-option *ngFor="let element of attenderArray" [value]="element">{{element}}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+
+
+                <mat-form-field appearance="fill" style="width: 100%;">
+                  <mat-label style="font-weight: bold;">Enter Patient</mat-label>
+                  <input id="patient" formControlName="patient" matInput>
+                </mat-form-field>
+
+
+                <mat-form-field appearance="fill" style="width: 100%;">
+                  <mat-label style="font-weight: bold;">Enter Disease</mat-label>
+                  <input id="disease" formControlName="disease" matInput>
+                </mat-form-field>
+
+
+                <mat-form-field appearance="fill" style="width: 100%;">
+                  <mat-label style="font-weight: bold;">Select Department</mat-label>
+                  <mat-select id="department" formControlName="department">
+                    <mat-option (click)="selectAttender()" *ngFor="let element of departmentArray" [value]="element">{{element}}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+
+                <div fxLayout="row">
+                  <mat-form-field>
+                    <mat-label style="font-weight: bold; padding-left:15px">Choose a date</mat-label>
+                    <input matInput type="date" id="data" formControlName="date" style="padding-left:15px"> 
+                  </mat-form-field>
+
+                  <mat-form-field apperance="fill" style="margin-left: 20px; width: 215px;" >
+                    <mat-label style="font-weight: bold; padding-left:15px;">Choose a time</mat-label>
+                    <input matInput [ngxTimepicker]="pickerTime" id="time" formControlName="time">
+                    <ngx-material-timepicker #pickerTime></ngx-material-timepicker>
+                  </mat-form-field>
+
+                  <mat-form-field appearance="fill" style="width: 100%;">
+                    <mat-label style="font-weight: bold;">Select Branch</mat-label>
+                    <mat-select id="branch" formControlName="branch">
+                      <mat-option value="Chennai">Chennai</mat-option>
+                      <mat-option value="Coimbatore">Coimbatore</mat-option>
+                      <mat-option value="Bangalore">Bangalore</mat-option>
+                      <mat-option value="Hyderabad">Hyderabad</mat-option>
+                      <mat-option value="Kochi">Kochi</mat-option>
+                    </mat-select>
+                  </mat-form-field>
+
+                  <mat-form-field appearance="fill" style="width: 100%;">
+                    <mat-label style="font-weight: bold;">Select Specialist Doctor</mat-label>
+                    <mat-select id="specialist" formControlName="specialist">
+                      <mat-option *ngFor="let element of specialistArray" [value]="element">{{element}}</mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+                <div class="mt-3">
+                  <button 
+                  [disabled]="appData.value.attender === '' || appData.value.patient === '' || appData.value.disease === '' || 
+                  appData.value.department === '' || appData.value.date === '' || appData.value.time === '' || appData.value.branch === '' || appData.value.specialist === ''" 
+                  class="btn btn-block btn-gradient-primary btn-lg font-weight-medium auth-form-btn"
+                    type="submit">BOOK</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- content-wrapper ends -->
+    </div>
+    <!-- page-body-wrapper ends -->
+  </div>
+</div>
+<!-- container-scroller -->
+<!-- plugins:js -->
+<!-- endinject -->
+<!-- Plugin js for this page -->
+<!-- End plugin js for this page -->
+<!-- inject:js -->

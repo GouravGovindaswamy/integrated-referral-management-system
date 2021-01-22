@@ -7,7 +7,7 @@
       "projectType": "application",
       "schematics": {
         "@schematics/angular:application": {
-          "strict": true
+          "strict": false
         }
       },
       "root": "",
@@ -28,9 +28,18 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "./node_modules/font-awesome/scss/font-awesome.scss",
+              "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
+              "src/styles.css",
+              "./node_modules/@mobiscroll/angular/dist/css/mobiscroll.min.css"
             ],
-            "scripts": []
+            "scripts": [
+              "./node_modules/chartjs/chart.js",
+              "./node_modules/hammerjs/hammer.min.js",
+              "./src/assets/vendors/js/vendor.bundle.base.js",
+              "./src/assets/js/off-canvas.js"
+              
+            ]
           },
           "configurations": {
             "production": {
@@ -91,6 +100,7 @@
               "src/assets"
             ],
             "styles": [
+              "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
               "src/styles.css"
             ],
             "scripts": []
@@ -124,5 +134,8 @@
       }
     }
   },
-  "defaultProject": "angular-front-end"
+  "defaultProject": "angular-front-end",
+  "cli": {
+    "analytics": "cf752c8e-d9d8-4244-ae6e-2292a4df69eb"
+  }
 }

@@ -1,0 +1,84 @@
+<div class="container-scroller">
+  <div class="page-body-wrapper full-page-wrapper">
+    <div class="content-wrapper d-flex align-items-center auth">
+      <div class="row flex-grow" style="height: 100%;" *ngIf="showDiv" [@flyInOut]>
+        <form [formGroup]="adminAppReviewData">
+          <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8 data-table">
+
+            <!--- Note that these columns can be defined in any order.
+          The actual rendered columns are set as a property on the row definition" -->
+
+            <!-- Position Column -->
+            <ng-container matColumnDef="id">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>Id</th>
+              <td mat-cell *matCellDef="let row" style="padding-right: 20px; padding-top:9px"><mat-checkbox (click)="getID(row.id)" class="example-margin">{{row.id}}</mat-checkbox></td>
+            </ng-container>
+
+            <!-- Name Column -->
+            <ng-container matColumnDef="attender">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>Attender</th>
+              <td mat-cell *matCellDef="let row">{{row.attender}}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="patient">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>Patient<span
+                  style="padding-left: 70px; padding-top: 10px;">
+                  <p style="font-size: 13px;">Insurance</p>
+                </span></th>
+
+              <td mat-cell *matCellDef="let row" style="display:flex; flex-direction:row;"><span
+                  style="padding-top: 24px;">{{row.patient}}</span>
+                <div style="margin-left: 30px; margin-top: 10px;">
+                  <mat-radio-group style="display:flex; flex-direction: column;" id="insurance" formControlName="insurance">
+                    <mat-radio-button value="yes">Insurance Applicable</mat-radio-button>
+                    <mat-radio-button value="no">No Insurance</mat-radio-button>
+                  </mat-radio-group>
+                </div>
+              </td>
+            </ng-container>
+
+            <ng-container matColumnDef="disease">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>Disease</th>
+              <td mat-cell *matCellDef="let row">{{row.disease}}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="department">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>Department</th>
+              <td mat-cell *matCellDef="let row">{{row.department}}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="dateofapp">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>Date</th>
+              <td mat-cell *matCellDef="let row">{{row.dateofapp}}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="timeofapp">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>Time</th>
+              <td mat-cell *matCellDef="let row">{{row.timeofapp}}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="branch">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>Branch</th>
+              <td mat-cell *matCellDef="let row">{{row.branch}}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="specialist">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>Specialist<span
+                  style="padding-left: 70px; padding-top: 10px;">
+                  <p style="font-size: 13px;">Actions</p>
+                </span></th>
+              <td mat-cell *matCellDef="let row">{{row.specialist}}<span>
+                  <button mat-raised-button color="accent" style="margin-left: 20px; margin-right:20px"
+                    (click)="confirmApp(adminAppReviewData.value)">Confirm</button>
+                  <button mat-raised-button color="warn" (click)="sendSpecialistAppReview(adminAppReviewData.value)">Send for review</button>
+                </span></td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+          </table>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
